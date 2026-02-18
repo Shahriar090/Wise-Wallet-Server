@@ -1,1 +1,1 @@
-echo "pre-commit passed"
+pnpm biome check . --write

@@ -11,12 +11,19 @@ app.use(cors())
 
 
 app.get('/', (_req:Request, res:Response) => {
-  res.send('Hello From WiseWallet!')
+
+
+
+
+            res.send('Hello From WiseWallet!')
 })
 
 app.get('/test-error', (_req:Request, res:Response, next)=>{
-  const err = new Error("Error Testing.!")
-next(err)
+      const err = new Error("Error Testing.!")
+            
+      
+      
+      next(err)
 })
 
 

@@ -7,7 +7,10 @@
   "scripts": {
     "build": "tsc",
     "start:dev": "tsx watch ./src/server.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "biome check .",
+    "format": "biome format .",
+    "format:write": "biome format . --write"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,7 @@
     "mongoose": "^9.2.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.2",
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@types/cookie-parser": "^1.4.10",
