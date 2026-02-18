@@ -1,37 +1,43 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "start:dev": "tsx watch ./src/server.ts",
-    "prepare": "husky",
-    "lint": "biome check .",
-    "format": "biome format .",
-    "format:write": "biome format . --write"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.14.0",
-  "dependencies": {
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "mongoose": "^9.2.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.2",
-    "@commitlint/cli": "^20.4.1",
-    "@commitlint/config-conventional": "^20.4.1",
-    "@types/cookie-parser": "^1.4.10",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "dotenv": "^17.3.1",
-    "husky": "^9.1.7",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"start:dev": "tsx watch ./src/server.ts",
+		"prepare": "husky",
+		"lint": "biome check .",
+		"format": "biome format .",
+		"format:write": "biome format . --write"
+	},
+	"lint-staged": {
+		"*.{ts,js,json}": [
+			"biome check --write"
+		]
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.14.0",
+	"dependencies": {
+		"cookie-parser": "^1.4.7",
+		"cors": "^2.8.6",
+		"express": "^5.2.1",
+		"mongoose": "^9.2.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.2",
+		"@commitlint/cli": "^20.4.1",
+		"@commitlint/config-conventional": "^20.4.1",
+		"@types/cookie-parser": "^1.4.10",
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.6",
+		"dotenv": "^17.3.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"tsx": "^4.21.0",
+		"typescript": "^5.9.3"
+	}
 }
