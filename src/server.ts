@@ -1,14 +1,18 @@
 import type { Server } from "http";
 import mongoose from "mongoose";
+import config from "./app/config/index.js";
 import app from "./app.js";
 
-const PORT = 3000;
+const PORT = config.port || 5000;
 
 let server: Server;
 
 async function main() {
 	try {
-		await mongoose.connect("mongodb://localhost:27017/wise-wallet");
+		if (!config.db_url) {
+			throw new Error("ATABASE_URL is not defined in .env file");
+		}
+		await mongoose.connect(config.db_url);
 		console.log("DB Connected Successfully");
 
 		server = app.listen(PORT, () => {
