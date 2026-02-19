@@ -1,21 +1,18 @@
-import dotenv from "dotenv";
 import type { Server } from "http";
 import mongoose from "mongoose";
+import config from "./app/config/index.js";
 import app from "./app.js";
 
-dotenv.config();
-
-const PORT = process.env.PORT || 5000;
-const DB_URL = process.env.DB_URL;
+const PORT = config.port || 5000;
 
 let server: Server;
 
 async function main() {
 	try {
-		if (!DB_URL) {
+		if (!config.db_url) {
 			throw new Error("ATABASE_URL is not defined in .env file");
 		}
-		await mongoose.connect(DB_URL);
+		await mongoose.connect(config.db_url);
 		console.log("DB Connected Successfully");
 
 		server = app.listen(PORT, () => {
