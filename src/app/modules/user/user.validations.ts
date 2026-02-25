@@ -40,7 +40,10 @@ const createUserValidationSchema = z.object({
 
 const updateUserValidationSchema = z.object({
 	body: z.object({
-		user: userBaseValidationSchema.partial(),
+		user: userBaseValidationSchema.partial().extend({
+			name: userNameBaseValidationSchema.partial(), // ensures nested objects are also optional
+			contactInfo: contactValidationSchema.partial(),
+		}),
 	}),
 });
 
