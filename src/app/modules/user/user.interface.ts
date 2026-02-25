@@ -1,4 +1,4 @@
-import type { Model } from "mongoose";
+import type { Model, Types } from "mongoose";
 import type { USER_GENDER, USER_ROLES, USER_STATUS } from "./user.constants.js";
 
 export type UserName = {
@@ -10,6 +10,11 @@ export type UserName = {
 export type ContactInfo = {
 	phone: string;
 	email: string;
+};
+
+export type UserPreferences = {
+	currency: string;
+	timezone: string;
 };
 
 export type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES];
@@ -25,10 +30,12 @@ export type UserType = {
 	password: string;
 	role: UserRole;
 	status: UserStatus;
+	preferences: UserPreferences;
+	familyId?: Types.ObjectId;
 	isDeleted: boolean;
 };
 
 export interface UserModel extends Model<UserType> {
-	isUserExists(email: string): Promise<UserType>;
+	isUserExists(email: string): Promise<UserType | null>;
 	isPasswordMatched(plainTextPassword: string): Promise<boolean>;
 }
