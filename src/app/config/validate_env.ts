@@ -5,9 +5,9 @@ import { envValidationSchema } from "./env_validation_schema.js";
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 const baseEnv = path.resolve(process.cwd(), ".env");
-const envSpecific = path.resolve(process.cwd(), `.env${NODE_ENV}`);
+const envSpecific = path.resolve(process.cwd(), `.env.${NODE_ENV}`);
 const localOverride = path.resolve(process.cwd(), ".env.local");
-const envLocalOverride = path.resolve(process.cwd(), `.env${NODE_ENV}.local`);
+const envLocalOverride = path.resolve(process.cwd(), `.env.${NODE_ENV}.local`);
 
 dotEnv.config({ path: baseEnv, override: true });
 dotEnv.config({ path: envSpecific, override: true });
