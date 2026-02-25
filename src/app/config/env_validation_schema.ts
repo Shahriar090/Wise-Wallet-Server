@@ -6,4 +6,5 @@ export const envValidationSchema = z.object({
 	NODE_ENV: z.enum(["development", "production", "test"]),
 	PORT: numEnv(),
 	MONGODB_URL: z.string(),
+	BCRYPT_SALT_ROUND: numEnv(),
 });
