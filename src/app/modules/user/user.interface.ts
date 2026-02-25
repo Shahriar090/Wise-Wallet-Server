@@ -1,3 +1,4 @@
+import type { Model } from "mongoose";
 import type { USER_GENDER, USER_ROLES, USER_STATUS } from "./user.constants.js";
 
 export type UserName = {
@@ -26,3 +27,8 @@ export type UserType = {
 	status: UserStatus;
 	isDeleted: boolean;
 };
+
+export interface UserModel extends Model<UserType> {
+	isUserExists(email: string): Promise<UserType>;
+	isPasswordMatched(plainTextPassword: string): Promise<boolean>;
+}
