@@ -14,12 +14,21 @@ const contactValidationSchema = z.object({
 	email: z.email("Invalid Email Format").min(1, "Email Is Required").trim(),
 });
 
+// preferences
+const preferencesValidationSchema = z.object({
+	currency: z.string().default("BDT"),
+	timezone: z.string().default("UTC"),
+});
+
 const userBaseValidationSchema = z.object({
 	name: userNameBaseValidationSchema,
 	gender: z.enum([USER_GENDER.Male, USER_GENDER.Female, USER_GENDER.Others]),
 	age: z.number().int().min(18, "Age Must Be At Least 18"),
 	contactInfo: contactValidationSchema,
 	password: z.string().min(6, "Password Must Be At Least 6 Characters Long"),
+	preferences: preferencesValidationSchema
+		.optional()
+		.default({ currency: "BDT", timezone: "UTC" }),
 	role: z
 		.enum([USER_ROLES.Admin, USER_ROLES.Member])
 		.optional()
@@ -43,6 +52,7 @@ const updateUserValidationSchema = z.object({
 		user: userBaseValidationSchema.partial().extend({
 			name: userNameBaseValidationSchema.partial(), // ensures nested objects are also optional
 			contactInfo: contactValidationSchema.partial(),
+			preferences: preferencesValidationSchema.partial(),
 		}),
 	}),
 });
