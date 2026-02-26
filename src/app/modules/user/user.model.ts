@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import config from "../../config/index.js";
 import { USER_GENDER, USER_ROLES, USER_STATUS } from "./user.constants.js";
 import type {
@@ -75,3 +75,6 @@ userSchema.pre("save", async function () {
 	}
 	this.password = await bcrypt.hash(this.password, config.bcrypt_salt_round);
 });
+
+// User Model
+export const User = model<UserType, UserModel>("User", userSchema);
