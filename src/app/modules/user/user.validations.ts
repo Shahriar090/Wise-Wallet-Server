@@ -26,9 +26,7 @@ const userBaseValidationSchema = z.object({
 	age: z.number().int().min(18, "Age Must Be At Least 18"),
 	contactInfo: contactValidationSchema,
 	password: z.string().min(6, "Password Must Be At Least 6 Characters Long"),
-	preferences: preferencesValidationSchema
-		.optional()
-		.default({ currency: "BDT", timezone: "UTC" }),
+	preferences: preferencesValidationSchema.optional(),
 	role: z
 		.enum([USER_ROLES.Admin, USER_ROLES.Member])
 		.optional()
@@ -37,7 +35,7 @@ const userBaseValidationSchema = z.object({
 		.enum([USER_STATUS.Active, USER_STATUS.Blocked])
 		.optional()
 		.default(USER_STATUS.Active),
-	isDeleted: z.boolean().optional().default(false),
+	isDeleted: z.boolean().optional(),
 });
 
 // actual schemas
@@ -50,9 +48,9 @@ const createUserValidationSchema = z.object({
 const updateUserValidationSchema = z.object({
 	body: z.object({
 		user: userBaseValidationSchema.partial().extend({
-			name: userNameBaseValidationSchema.partial(), // ensures nested objects are also optional
-			contactInfo: contactValidationSchema.partial(),
-			preferences: preferencesValidationSchema.partial(),
+			name: userNameBaseValidationSchema.partial().optional(), // ensures nested objects are also optional
+			contactInfo: contactValidationSchema.partial().optional(),
+			preferences: preferencesValidationSchema.partial().optional(),
 		}),
 	}),
 });
