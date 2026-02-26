@@ -15,6 +15,21 @@ const createUser = asyncHandler(async (req, res) => {
 	});
 });
 
+// update user info
+const updateUserInfo = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+	const payload = req.body.user;
+	const result = await UserServices.updateUserIntoDb(id as string, payload);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "User Information Updated Successfully",
+		data: result,
+	});
+});
+
 export const UserControllers = {
 	createUser,
+	updateUserInfo,
 };
