@@ -40,8 +40,23 @@ const getAllUser = asyncHandler(async (_req, res) => {
 		data: result,
 	});
 });
+
+// get a single user
+const getSingleUser = asyncHandler(async (req, res) => {
+	const { userId } = req.params;
+
+	const result = await UserServices.getSingleUserFromDb(userId as string);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "User Data Get Successfully",
+		data: result,
+	});
+});
 export const UserControllers = {
 	createUser,
 	updateUserInfo,
 	getAllUser,
+	getSingleUser,
 };
