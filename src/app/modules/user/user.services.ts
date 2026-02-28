@@ -74,11 +74,36 @@ const updateUserIntoDb = async (userId: string, payload: UserType) => {
 
 // get all users
 const getAllUsersFromDb = async () => {
-	return await User.find();
+	const users = await User.find();
+
+	if (!users) {
+		throw new AppError(
+			httpStatus.NOT_FOUND,
+			"No Users Found",
+			"UserNotFoundError",
+		);
+	}
+
+	return users;
+};
+
+// get a single user
+const getSingleUserFromDb = async (userId: string) => {
+	const user = await User.findById(userId);
+
+	if (!user) {
+		throw new AppError(
+			httpStatus.NOT_FOUND,
+			"No User Found With This Id",
+			"UserNotFound",
+		);
+	}
+	return user;
 };
 
 export const UserServices = {
 	createUserIntoDb,
 	updateUserIntoDb,
 	getAllUsersFromDb,
+	getSingleUserFromDb,
 };
