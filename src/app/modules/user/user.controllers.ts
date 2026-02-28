@@ -29,7 +29,19 @@ const updateUserInfo = asyncHandler(async (req, res) => {
 	});
 });
 
+// get all users
+const getAllUser = asyncHandler(async (_req, res) => {
+	const result = await UserServices.getAllUsersFromDb();
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "All Users Get Successfully",
+		data: result,
+	});
+});
 export const UserControllers = {
 	createUser,
 	updateUserInfo,
+	getAllUser,
 };
