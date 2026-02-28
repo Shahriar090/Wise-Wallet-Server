@@ -72,7 +72,13 @@ const updateUserIntoDb = async (userId: string, payload: UserType) => {
 	return result;
 };
 
+// get all users
+const getAllUsersFromDb = async () => {
+	return await User.find();
+};
+
 export const UserServices = {
 	createUserIntoDb,
 	updateUserIntoDb,
+	getAllUsersFromDb,
 };
