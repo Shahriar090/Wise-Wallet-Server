@@ -22,6 +22,9 @@ router
 	);
 
 // get all users
-router.route("/all-users").get(UserControllers.getAllUser);
+router.route("/").get(UserControllers.getAllUser);
+
+// get a single user
+router.route("/:userId").get(UserControllers.getSingleUser);
 
 export const UserRoutes = router;
