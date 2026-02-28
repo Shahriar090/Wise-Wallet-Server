@@ -21,4 +21,7 @@ router
 		UserControllers.updateUserInfo,
 	);
 
+// get all users
+router.route("/all-users").get(UserControllers.getAllUser);
+
 export const UserRoutes = router;
